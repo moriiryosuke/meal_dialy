@@ -1,0 +1,90 @@
+{% extends "application.html" %}
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <h2>今日の栄養素達成割合</h2>
+    {% for user in users %}
+    <dl class="bar-chart-002">
+        <div class="bar1">
+            <dt>カロリー</dt>
+            <dd><span style="width: {{ratio.kcal}}%">{{ratio.kcal}}%</span></dd>
+        </div>
+        <div class="bar2">
+            <dt>タンパク質</dt>
+            <dd><span style="width: {{ratio.protein}}%">{{ratio.protein}}%</span></dd>
+        </div>
+        <div class="bar3">
+            <dt>脂質</dt>
+            <dd><span style="width: {{ratio.fat}}%">{{ratio.fat}}%</span></dd>
+        </div>
+        <div class="bar4">
+            <dt>炭水化物</dt>
+            <dd><span style="width: {{ratio.carbs}}%">{{ratio.carbs}}%</span></dd>
+        </div>
+        <div class="bar5">
+            <dt>食物繊維</dt>
+            <dd><span style="width: {{ratio.vege}}%">{{ratio.vege}}%</span></dd>
+        </div>
+    </dl>
+    {% endfor%}
+    {% for user in users %}
+    <div class = "nutl">
+    <div class="purpose">
+        <div class="purpose-item">
+        {{user.username}}さんの<br><b>1日の目標栄養素</b><br>
+        （{{user.age}}歳, {{user.sex}}, 運動レベル：{{user.movetype}}）
+        </div>
+        
+        <p>カロリー:{{user.kcal}}</p>
+        <p>タンパク質:{{user.protein}}</p>
+        <p>脂質:{{user.fat}}</p>
+        <p>炭水化物:{{user.carbs}}</p>
+        <p>食物繊維:{{user.vege}}</p>
+        
+    </div>
+    {% endfor%}
+    <div class="arrow">
+        <br><br><br><br><br>
+        <img src="../static/image/arrow073.png" height = "60">
+    </div>
+    <div class="today">
+        <div class="today-item">
+        <br>
+        <b>今日の達成量</b>
+        <br>
+        <br>
+        </div>
+        <p>カロリー:{{nutl.kcal}}</p>
+        <p>タンパク質:{{nutl.protein}}</p>
+        <p>脂質:{{nutl.fat}}</p>
+        <p>炭水化物:{{nutl.carbs}}</p>
+        <p>食物繊維:{{nutl.vege}}</p>
+    </div>
+    </div>
+    
+    <h2>食べたご飯</h2>
+<!--下の％の中にある受け取った変数は二重括弧しなくていいんや -->
+    <div class="dialy">
+    {% for post in posts %}
+    <div class="dialy-item">
+        <p>食べた日：{{post.created_at}}</p>
+        <p>{{post.meal_time}}：<b>{{post.pred}}</b></p>
+        <img class="upload_image" src={{post.file_path}} height = "300">
+        <br>
+        <div class="com">
+        <p> コメント：{{post.comment}}</p>
+        </div>
+        <p>{{post.gram}}g</p>
+        <p>カロリー:{{post.kcal}}</p>
+        <p>タンパク質:{{post.protein}}</p>
+        <p>脂質:{{post.fat}}</p>
+        <p>炭水化物:{{post.carbs}}</p>
+        <p>塩分:{{post.salt}}</p>
+        <p>野菜量:{{post.vege}}</p>
+        <a href="{{post.id}}/edit">編集</a>
+        <a href="{{post.id}}/delete">削除</a>
+    </div>
+    {% endfor%}
+    </div>
+{% endblock %}

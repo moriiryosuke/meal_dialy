@@ -1,0 +1,20 @@
+{% extends "application.html" %}
+{% block content %}
+    <h1>編集</h1>
+    <!-- action無しだと今のページURL呼ぶっぽい -->
+    <form method="POST">
+        <!-- labelは簡単に言うとユーザーが使いやすくなる -->
+        <label for="comment">コメント</label>
+        <input type="text" class="comment" name="comment" value = {{post.comment}}>
+        <br>
+        <label for="comment">何ご飯？</label>
+        <input type="search" name="meal_time" list="data" value="{{post.meal_time}}">
+        <datalist id="data">
+            <option value="朝ご飯"></option>
+            <option value="昼ご飯"></option>
+            <option value="夜ご飯"></option>
+            <option value="間食"></option>
+        </datalist>
+        <input type="submit" value="編集">
+    </form>
+{% endblock %}
